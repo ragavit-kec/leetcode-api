@@ -273,4 +273,11 @@ app.get('/:username/submission', leetcode.submission);
 app.get('/:username/acSubmission', leetcode.acSubmission);
 app.get('/:username/calendar', leetcode.calendar);
 
+// Shortcut route to get full user data using /username/:username
+app.get('/username/:username', (req, res) => {
+  req.body = { username: req.params.username };
+  leetcode.userData(req as any, res); // using "as any" to satisfy TS type
+});
+
+
 export default app;
